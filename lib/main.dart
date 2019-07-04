@@ -1,3 +1,4 @@
+import 'package:card_app/screens/home.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp(MyApp());
@@ -12,25 +13,6 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.deepPurple,
       ),
       home: Home(),
-    );
-  }
-}
-
-class Home extends StatefulWidget {
-
-  @override
-  _HomeState createState() => _HomeState();
-}
-
-class _HomeState extends State<Home> {
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("Yu-Gi-Oh Cards"),
-      ),
-      body: Container(),
     );
   }
 }
