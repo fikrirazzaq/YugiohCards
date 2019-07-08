@@ -2,7 +2,7 @@ import 'package:card_app/serializers/card_image.dart';
 import 'package:card_app/serializers/card_price.dart';
 import 'package:card_app/serializers/card_set.dart';
 
-class Card {
+class YgoCard {
   String id;
   String name;
   String type;
@@ -13,7 +13,7 @@ class Card {
   List<CardImages> cardImages;
   CardPrices cardPrices;
 
-  Card(
+  YgoCard(
       {this.id,
         this.name,
         this.type,
@@ -24,7 +24,7 @@ class Card {
         this.cardImages,
         this.cardPrices});
 
-  Card.fromJson(Map<String, dynamic> json) {
+  YgoCard.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     name = json['name'];
     type = json['type'];

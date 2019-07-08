@@ -1,4 +1,3 @@
-
 import 'dart:convert';
 
 import 'package:card_app/serializers/card.dart';
@@ -14,23 +13,36 @@ abstract class CardsBase with Store {
   CardsBase();
 
   @observable
-  List<Card> cardsList = List<Card>();
+  List<YgoCard> cardsList = List<YgoCard>();
+
+  @observable
+  int numOfCards = 6;
+
+  @observable
+  String filterUrl = "";
+
+  @action
+  increaseNumOfCards() {
+    numOfCards = numOfCards + 6;
+    getCardsList();
+  }
 
   @action
   getCardsList() {
-    fetchCardsList().then((retreivedCards) {
-        cardsList = retreivedCards;
+    fetchCardsList(numOfCards, filterUrl).then((retrievedCards) {
+      cardsList = retrievedCards;
     });
   }
 }
 
-Future<List<Card>> fetchCardsList() async {
-  final response = await http.get(Constants.cardList(10));
-  List<Card> cards = List<Card>();
+Future<List<YgoCard>> fetchCardsList(int numOfCards, String url) async {
+  print("atep ${createUrl(url, numOfCards)}");
+  final response = await http.get(createUrl(url, numOfCards));
+  List<YgoCard> cards = List<YgoCard>();
 
   if (response.statusCode == 200) {
     Iterable cardList = json.decode(response.body);
-    cards = cardList.map((card) => Card.fromJson(card)).toList();
+    cards = cardList.map((card) => YgoCard.fromJson(card)).toList();
     for (int i = 0; i < cards.length; i++) {
       print("KARTU OJIG ::::: ${cards[i].name}");
     }
@@ -40,3 +52,6 @@ Future<List<Card>> fetchCardsList() async {
   }
 }
 
+String createUrl(String url, int numOfCards) {
+  return "${Constants.cardList()}?num=$numOfCards$url";
+}
