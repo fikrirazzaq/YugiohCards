@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:card_app/models/monsters.dart';
+import 'package:card_app/screens/card_detail_page.dart';
 import 'package:card_app/serializers/card.dart';
 import 'package:card_app/utils/size_config.dart';
 import 'package:flutter/material.dart';
@@ -30,7 +31,6 @@ class _MonsterCardsPageState extends State<MonsterCardsPage> {
   void didChangeDependencies() {
     super.didChangeDependencies();
     _cards.getCardsList();
-
     _scrollController.addListener(() async {
       if (_scrollController.position.pixels ==
           _scrollController.position.maxScrollExtent) {
@@ -87,56 +87,69 @@ class _MonsterCardsPageState extends State<MonsterCardsPage> {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.all(Radius.zero),
         ),
-        child: Row(
-          children: <Widget>[
-            CachedNetworkImage(
-              height: SizeConfig.blockSizeVertical * 20,
-              imageUrl: card.cardImages[0].imageUrlSmall,
-              placeholder: (context, url) => Container(
-                    margin: EdgeInsets.only(left: 24, right: 24),
-                    child: CircularProgressIndicator(),
-                  ),
-              errorWidget: (context, url, error) => Icon(Icons.error),
-            ),
-            Container(
-              height: SizeConfig.blockSizeVertical * 20,
-              width: SizeConfig.blockSizeHorizontal * 65,
-              padding: EdgeInsets.only(left: 8, right: 8, top: 8, bottom: 8),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisSize: MainAxisSize.max,
-                children: <Widget>[
-                  Container(
-                    child: Text(
-                      card.name,
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                  ),
-                  Container(
-                    margin: EdgeInsets.only(top: 2, bottom: 4),
-                    child: Text(
-                      card.type,
-                      style: TextStyle(
-                        fontSize: 12,
-                        color: cardTypeColor(card.type),
-                      ),
-                    ),
-                  ),
-                  Expanded(
-                    child: Text(
-                      card.desc,
-                      maxLines: 4,
-                      overflow: TextOverflow.ellipsis,
-                      style: TextStyle(fontSize: 12, color: Colors.grey),
-                    ),
-                  ),
-                ],
+        child: InkWell(
+          borderRadius: BorderRadius.all(Radius.zero),
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => CardDetailPage(
+                  card: card,
+                ),
               ),
-            ),
-          ],
+            );
+          },
+          child: Row(
+            children: <Widget>[
+              CachedNetworkImage(
+                height: SizeConfig.blockSizeVertical * 20,
+                imageUrl: "https://ygoprodeck.com/pics/${card.id}.jpg",
+                placeholder: (context, url) => Container(
+                  margin: EdgeInsets.only(left: 25, right: 25),
+                  child: CircularProgressIndicator(),
+                ),
+                errorWidget: (context, url, error) => Icon(Icons.error),
+              ),
+              Container(
+                height: SizeConfig.blockSizeVertical * 20,
+                width: SizeConfig.blockSizeHorizontal * 65,
+                padding: EdgeInsets.only(left: 8, right: 8, top: 8, bottom: 8),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.max,
+                  children: <Widget>[
+                    Container(
+                      child: Text(
+                        card.name,
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                    ),
+                    Container(
+                      margin: EdgeInsets.only(top: 2, bottom: 4),
+                      child: Text(
+                        card.type,
+                        style: TextStyle(
+                          fontSize: 12,
+                          color: cardTypeColor(card.type),
+                        ),
+                      ),
+                    ),
+                    Expanded(
+                      child: Text(
+                        card.desc,
+                        maxLines: 4,
+                        overflow: TextOverflow.ellipsis,
+                        style: TextStyle(fontSize: 12, color: Colors.grey),
+                      ),
+                    ),
+                  ],
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );
@@ -144,15 +157,15 @@ class _MonsterCardsPageState extends State<MonsterCardsPage> {
 
   Color cardTypeColor(String type) {
     if (type.toLowerCase().contains('spell')) {
-      return Colors.green;
+      return Colors.teal;
     } else if (type.toLowerCase().contains('skill')) {
-      return Colors.green;
+      return Colors.teal;
     } else if (type.toLowerCase().contains('monster')) {
       return Colors.brown;
     } else if (type.toLowerCase().contains('trap')) {
-      return Colors.purpleAccent;
+      return Colors.pink[800];
     } else {
-      return Colors.teal;
+      return Colors.blueAccent;
     }
   }
 }

@@ -3,6 +3,7 @@ import 'package:card_app/serializers/card.dart';
 import 'package:card_app/utils/constants.dart';
 import 'package:card_app/utils/size_config.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class CardDetailPage extends StatefulWidget {
   final YgoCard card;
@@ -14,6 +15,22 @@ class CardDetailPage extends StatefulWidget {
 }
 
 class _CardDetailPageState extends State<CardDetailPage> {
+
+  @override
+  void initState() {
+    Fluttertoast.cancel();
+    Fluttertoast.showToast(
+        msg: widget.card.name,
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.BOTTOM,
+        timeInSecForIos: 1,
+        backgroundColor: cardTypeColor(widget.card.type),
+        textColor: Colors.white,
+        fontSize: 16.0
+    );
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
@@ -438,15 +455,15 @@ class _CardDetailPageState extends State<CardDetailPage> {
 
   Color cardTypeColor(String type) {
     if (type.toLowerCase().contains('spell')) {
-      return Colors.green;
+      return Colors.teal;
     } else if (type.toLowerCase().contains('skill')) {
-      return Colors.green;
+      return Colors.teal;
     } else if (type.toLowerCase().contains('monster')) {
       return Colors.brown;
     } else if (type.toLowerCase().contains('trap')) {
-      return Colors.purpleAccent;
+      return Colors.pink[800];
     } else {
-      return Colors.teal;
+      return Colors.blueAccent;
     }
   }
 }

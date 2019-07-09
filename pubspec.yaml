@@ -34,6 +34,9 @@ dependencies:
   # Image Loader
   cached_network_image:
 
+  # Toast
+  fluttertoast:
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

@@ -40,7 +40,7 @@ abstract class CardsBase with Store {
 }
 
 Future<List<YgoCard>> fetchCardsList(int numOfCards, String url) async {
-  print("atep ${createUrl(url, numOfCards)}");
+  print("${createUrl(url, numOfCards)}");
   final response = await http.get(createUrl(url, numOfCards));
   List<YgoCard> cards = List<YgoCard>();
 
@@ -48,7 +48,7 @@ Future<List<YgoCard>> fetchCardsList(int numOfCards, String url) async {
     Iterable cardList = json.decode(response.body);
     cards = cardList.map((card) => YgoCard.fromJson(card)).toList();
     for (int i = 0; i < cards.length; i++) {
-      print("KARTU OJIG ::::: ${cards[i].name}");
+      print("KARTU ::::: ${cards[i].name}");
     }
     return cards;
   } else {
@@ -57,5 +57,5 @@ Future<List<YgoCard>> fetchCardsList(int numOfCards, String url) async {
 }
 
 String createUrl(String url, int numOfCards) {
-  return "${Constants.cardList()}?num=$numOfCards$url";
+  return "${Constants.cardList}?num=$numOfCards$url";
 }

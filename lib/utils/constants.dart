@@ -1,7 +1,5 @@
 class Constants {
-  static String cardList() {
-    return 'https://db.ygoprodeck.com/api/v5/cardinfo.php';
-  }
+  static String cardList = "https://db.ygoprodeck.com/api/v5/cardinfo.php";
 
   static String imgArchetype = "https://ygoprodeck.com/pics/icons/archetype.png";
   static String imgLevelUrl = "https://ygoprodeck.com/wp-content/uploads/2017/01/level.png";

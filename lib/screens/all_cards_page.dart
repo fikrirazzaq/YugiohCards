@@ -157,15 +157,15 @@ class _AllCardsPageState extends State<AllCardsPage> {
 
   Color cardTypeColor(String type) {
     if (type.toLowerCase().contains('spell')) {
-      return Colors.green;
+      return Colors.teal;
     } else if (type.toLowerCase().contains('skill')) {
-      return Colors.green;
+      return Colors.teal;
     } else if (type.toLowerCase().contains('monster')) {
       return Colors.brown;
     } else if (type.toLowerCase().contains('trap')) {
-      return Colors.purpleAccent;
+      return Colors.pink[800];
     } else {
-      return Colors.teal;
+      return Colors.blueAccent;
     }
   }
 }
