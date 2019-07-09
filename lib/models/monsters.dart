@@ -5,12 +5,12 @@ import 'package:card_app/utils/constants.dart';
 import 'package:mobx/mobx.dart';
 import 'package:http/http.dart' as http;
 
-part 'cards.g.dart';
+part 'monsters.g.dart';
 
-class Cards = CardsBase with _$Cards;
+class Monsters = MonstersBase with _$Monsters;
 
-abstract class CardsBase with Store {
-  CardsBase();
+abstract class MonstersBase with Store {
+  MonstersBase();
 
   @observable
   List<YgoCard> cardsList = List<YgoCard>();
@@ -19,7 +19,7 @@ abstract class CardsBase with Store {
   int numOfCards = 6;
 
   @observable
-  String filterUrl = "";
+  String filterUrl = "&type=normal%20monster";
 
   @action
   increaseNumOfCards() {
@@ -28,7 +28,9 @@ abstract class CardsBase with Store {
   }
 
   @action
-  filterCardList(int filter) {
+  filterCardList(String filterUrl) {
+    this.filterUrl = filterUrl;
+    getCardsList();
   }
 
   @action

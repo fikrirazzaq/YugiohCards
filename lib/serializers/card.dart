@@ -7,7 +7,11 @@ class YgoCard {
   String name;
   String type;
   String desc;
+  String atk;
+  String def;
+  String level;
   String race;
+  String attribute;
   String archetype;
   List<CardSets> cardSets;
   List<CardImages> cardImages;
@@ -18,7 +22,11 @@ class YgoCard {
         this.name,
         this.type,
         this.desc,
+        this.atk,
+        this.def,
+        this.level,
         this.race,
+        this.attribute,
         this.archetype,
         this.cardSets,
         this.cardImages,
@@ -29,7 +37,11 @@ class YgoCard {
     name = json['name'];
     type = json['type'];
     desc = json['desc'];
+    atk = json['atk'];
+    def = json['def'];
+    level = json['level'];
     race = json['race'];
+    attribute = json['attribute'];
     archetype = json['archetype'];
     if (json['card_sets'] != null) {
       cardSets = new List<CardSets>();
@@ -54,7 +66,11 @@ class YgoCard {
     data['name'] = this.name;
     data['type'] = this.type;
     data['desc'] = this.desc;
+    data['atk'] = this.atk;
+    data['def'] = this.def;
+    data['level'] = this.level;
     data['race'] = this.race;
+    data['attribute'] = this.attribute;
     data['archetype'] = this.archetype;
     if (this.cardSets != null) {
       data['card_sets'] = this.cardSets.map((v) => v.toJson()).toList();
