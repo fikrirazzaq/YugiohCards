@@ -11,6 +11,14 @@ GET
 https://db.ygoprodeck.com/api/v5/cardinfo.php
 ```
 
+## Build App
+This app required generated code. Here is the command:
+```
+flutter packages get
+flutter packages run build_runner build
+flutter run
+```
+
 ## Libs Dependencies
 * [mobx]
 * [flutter_mobx]
