@@ -43,11 +43,11 @@ flutter run
 <a href="https://twitter.com/fikrirazzaq"><img src="https://github.com/aritraroy/social-icons/blob/master/twitter-icon.png?raw=true" width="60"></a>
 <a href="https://linkedin.com/in/fikrirazzaq"><img src="https://github.com/aritraroy/social-icons/blob/master/linkedin-icon.png?raw=true" width="60"></a>
 
-[mobx]: <https://classroom.udacity.com/courses/ud9012>
-[flutter_mobx]: <https://github.com/rifqimfahmi/android-mvvm-coroutine>
-[http]: <https://square.github.io/retrofit/>
-[cached_network_image]: <https://github.com/square/moshi>
-[fluttertoast]: <https://developer.android.com/topic/libraries/architecture/room>
-[mobx_codegen]: <https://developer.android.com/topic/libraries/architecture>
-[build_runner]: <https://developer.android.com/topic/libraries/architecture/coroutines>
+[mobx]: <https://pub.dev/packages/mobx>
+[flutter_mobx]: <https://pub.dev/packages/flutter_mobx>
+[http]: <https://pub.dev/packages/http>
+[cached_network_image]: <https://pub.dev/packages/cached_network_image>
+[fluttertoast]: <https://pub.dev/packages/fluttertoast>
+[mobx_codegen]: <https://pub.dev/packages/mobx_codegen>
+[build_runner]: <https://pub.dev/packages/build_runner>
 [git-karma]: <http://karma-runner.github.io/4.0/dev/git-commit-msg.html>
