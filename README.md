@@ -21,9 +21,9 @@ https://db.ygoprodeck.com/api/v5/cardinfo.php
 * [build_runner]
 
 ## TO DO
-[ ] Chopper for Network calls
-[ ] Using Provider
-[ ] ...
+- [ ] Chopper for Network calls
+- [ ] Using Provider
+- [ ] ...
 
 ## Repository Created & Maintained By
 
