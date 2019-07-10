@@ -1,16 +1,45 @@
-# card_app
+# Yugioh Cards Sample App
 
-A new Flutter application.
+All data are collected from https://db.ygoprodeck.com/api-guide/.
 
-## Getting Started
+I apply MobX as state management for this app. At this time, I only implement the list of cards with pagination and detail page. But, I will add some features like sorting, searching, and filter the cards based on availability of multiple parameters in the ygoprodeck.com api. In addition, I use [git-karma] for the commit messages conventions.
+There are still room for improvements, so I'm open for any feedback. Sharing with one another helps us all grow and learn. ✌️
 
-This project is a starting point for a Flutter application.
+### Api Service
+```
+GET
+https://db.ygoprodeck.com/api/v5/cardinfo.php
+```
 
-A few resources to get you started if this is your first Flutter project:
+## Libs Dependencies
+* [mobx]
+* [flutter_mobx]
+* [http]
+* [cached_network_image]
+* [fluttertoast]
+* [mobx_codegen]
+* [build_runner]
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+## TO DO
+[ ] Chopper for Network calls
+[ ] Using Provider
+[ ] ...
 
-For help getting started with Flutter, view our 
-[online documentation](https://flutter.dev/docs), which offers tutorials, 
-samples, guidance on mobile development, and a full API reference.
+## Repository Created & Maintained By
+
+### Fikri Razzaq
+
+#Flutter Enthusiast, #Android Developer.
+
+<a href="https://medium.com/@fikrirazzaq"><img src="https://github.com/aritraroy/social-icons/blob/master/medium-icon.png?raw=true" width="60"></a>
+<a href="https://twitter.com/fikrirazzaq"><img src="https://github.com/aritraroy/social-icons/blob/master/twitter-icon.png?raw=true" width="60"></a>
+<a href="https://linkedin.com/in/fikrirazzaq"><img src="https://github.com/aritraroy/social-icons/blob/master/linkedin-icon.png?raw=true" width="60"></a>
+
+[mobx]: <https://classroom.udacity.com/courses/ud9012>
+[flutter_mobx]: <https://github.com/rifqimfahmi/android-mvvm-coroutine>
+[http]: <https://square.github.io/retrofit/>
+[cached_network_image]: <https://github.com/square/moshi>
+[fluttertoast]: <https://developer.android.com/topic/libraries/architecture/room>
+[mobx_codegen]: <https://developer.android.com/topic/libraries/architecture>
+[build_runner]: <https://developer.android.com/topic/libraries/architecture/coroutines>
+[git-karma]: <http://karma-runner.github.io/4.0/dev/git-commit-msg.html>
