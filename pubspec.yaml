@@ -37,11 +37,20 @@ dependencies:
   # Toast
   fluttertoast:
 
+  # Shared Preference
+  shared_preferences:
+
+  # Provider
+  provider:
+
+  # Chopper
+  chopper:
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
 
-  # MobX
+  chopper_generator:
   mobx_codegen:
   build_runner:
 

@@ -63,10 +63,10 @@ mixin _$Cards on CardsBase, Store {
   final _$CardsBaseActionController = ActionController(name: 'CardsBase');
 
   @override
-  dynamic increaseNumOfCards() {
+  dynamic increaseNumOfCards(BuildContext context) {
     final _$actionInfo = _$CardsBaseActionController.startAction();
     try {
-      return super.increaseNumOfCards();
+      return super.increaseNumOfCards(context);
     } finally {
       _$CardsBaseActionController.endAction(_$actionInfo);
     }
@@ -83,10 +83,10 @@ mixin _$Cards on CardsBase, Store {
   }
 
   @override
-  dynamic getCardsList() {
+  dynamic getCardsList(BuildContext context) {
     final _$actionInfo = _$CardsBaseActionController.startAction();
     try {
-      return super.getCardsList();
+      return super.getCardsList(context);
     } finally {
       _$CardsBaseActionController.endAction(_$actionInfo);
     }

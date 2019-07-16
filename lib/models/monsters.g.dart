@@ -43,50 +43,50 @@ mixin _$Monsters on MonstersBase, Store {
     }, _$numOfCardsAtom, name: '${_$numOfCardsAtom.name}_set');
   }
 
-  final _$filterUrlAtom = Atom(name: 'MonstersBase.filterUrl');
+  final _$filterTypeAtom = Atom(name: 'MonstersBase.filterType');
 
   @override
-  String get filterUrl {
-    _$filterUrlAtom.context.enforceReadPolicy(_$filterUrlAtom);
-    _$filterUrlAtom.reportObserved();
-    return super.filterUrl;
+  String get filterType {
+    _$filterTypeAtom.context.enforceReadPolicy(_$filterTypeAtom);
+    _$filterTypeAtom.reportObserved();
+    return super.filterType;
   }
 
   @override
-  set filterUrl(String value) {
-    _$filterUrlAtom.context.conditionallyRunInAction(() {
-      super.filterUrl = value;
-      _$filterUrlAtom.reportChanged();
-    }, _$filterUrlAtom, name: '${_$filterUrlAtom.name}_set');
+  set filterType(String value) {
+    _$filterTypeAtom.context.conditionallyRunInAction(() {
+      super.filterType = value;
+      _$filterTypeAtom.reportChanged();
+    }, _$filterTypeAtom, name: '${_$filterTypeAtom.name}_set');
   }
 
   final _$MonstersBaseActionController = ActionController(name: 'MonstersBase');
 
   @override
-  dynamic increaseNumOfCards() {
+  dynamic increaseNumOfCards(BuildContext context) {
     final _$actionInfo = _$MonstersBaseActionController.startAction();
     try {
-      return super.increaseNumOfCards();
+      return super.increaseNumOfCards(context);
     } finally {
       _$MonstersBaseActionController.endAction(_$actionInfo);
     }
   }
 
   @override
-  dynamic filterCardList(String filterUrl) {
+  dynamic filterCardList(String filterUrl, BuildContext context) {
     final _$actionInfo = _$MonstersBaseActionController.startAction();
     try {
-      return super.filterCardList(filterUrl);
+      return super.filterCardList(filterUrl, context);
     } finally {
       _$MonstersBaseActionController.endAction(_$actionInfo);
     }
   }
 
   @override
-  dynamic getCardsList() {
+  dynamic getCardsList(BuildContext context) {
     final _$actionInfo = _$MonstersBaseActionController.startAction();
     try {
-      return super.getCardsList();
+      return super.getCardsList(context);
     } finally {
       _$MonstersBaseActionController.endAction(_$actionInfo);
     }

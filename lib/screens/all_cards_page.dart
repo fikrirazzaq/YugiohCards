@@ -30,11 +30,12 @@ class _AllCardsPageState extends State<AllCardsPage> {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    _cards.getCardsList();
+    _cards.getCardsList(context);
 
     _scrollController.addListener(() async {
-      if (_scrollController.position.pixels == _scrollController.position.maxScrollExtent) {
-        await _cards.increaseNumOfCards();
+      if (_scrollController.position.pixels ==
+          _scrollController.position.maxScrollExtent) {
+        await _cards.increaseNumOfCards(context);
       }
     });
   }
@@ -44,19 +45,16 @@ class _AllCardsPageState extends State<AllCardsPage> {
     SizeConfig().init(context);
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text("All Cards"),
-      ),
       body: Observer(
         builder: (context) => RefreshIndicator(
-              onRefresh: () async {
-                await Future.delayed(Duration(seconds: 1));
-                await _cards.increaseNumOfCards();
-              },
-              child: Container(
-                child: Observer(
-                  builder: (_) => ((_cards.cardsList != null) &&
-                          (_cards.cardsList.isNotEmpty))
+          onRefresh: () async {
+            await Future.delayed(Duration(seconds: 1));
+            await _cards.increaseNumOfCards(context);
+          },
+          child: Container(
+            child: Observer(
+              builder: (_) =>
+                  ((_cards.cardsList != null) && (_cards.cardsList.isNotEmpty))
                       ? ListView.builder(
                           controller: _scrollController,
                           itemCount: _cards.cardsList.length,
@@ -69,9 +67,9 @@ class _AllCardsPageState extends State<AllCardsPage> {
                       : Center(
                           child: CircularProgressIndicator(),
                         ),
-                ),
-              ),
             ),
+          ),
+        ),
       ),
     );
   }
@@ -94,20 +92,20 @@ class _AllCardsPageState extends State<AllCardsPage> {
               context,
               MaterialPageRoute(
                 builder: (context) => CardDetailPage(
-                      card: card,
-                    ),
+                  card: card,
+                ),
               ),
             );
           },
           child: Row(
             children: <Widget>[
               CachedNetworkImage(
-                height: SizeConfig.blockSizeVertical * 20,
+                width: SizeConfig.blockSizeHorizontal * 30,
                 imageUrl: "https://ygoprodeck.com/pics/${card.id}.jpg",
                 placeholder: (context, url) => Container(
-                      margin: EdgeInsets.only(left: 24, right: 24),
-                      child: CircularProgressIndicator(),
-                    ),
+                  width: SizeConfig.blockSizeHorizontal * 30,
+                  child: Center(child: CircularProgressIndicator()),
+                ),
                 errorWidget: (context, url, error) => Icon(Icons.error),
               ),
               Container(

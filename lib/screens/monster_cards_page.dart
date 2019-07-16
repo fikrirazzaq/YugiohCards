@@ -30,11 +30,11 @@ class _MonsterCardsPageState extends State<MonsterCardsPage> {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    _cards.getCardsList();
+    _cards.getCardsList(context);
     _scrollController.addListener(() async {
       if (_scrollController.position.pixels ==
           _scrollController.position.maxScrollExtent) {
-        await _cards.increaseNumOfCards();
+        await _cards.increaseNumOfCards(context);
       }
     });
   }
@@ -44,19 +44,16 @@ class _MonsterCardsPageState extends State<MonsterCardsPage> {
     SizeConfig().init(context);
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Monster Cards"),
-      ),
       body: Observer(
         builder: (context) => RefreshIndicator(
-              onRefresh: () async {
-                await Future.delayed(Duration(seconds: 1));
-                await _cards.increaseNumOfCards();
-              },
-              child: Container(
-                child: Observer(
-                  builder: (_) => ((_cards.cardsList != null) &&
-                          (_cards.cardsList.isNotEmpty))
+          onRefresh: () async {
+            await Future.delayed(Duration(seconds: 1));
+            await _cards.increaseNumOfCards(context);
+          },
+          child: Container(
+            child: Observer(
+              builder: (_) =>
+                  ((_cards.cardsList != null) && (_cards.cardsList.isNotEmpty))
                       ? ListView.builder(
                           controller: _scrollController,
                           itemCount: _cards.cardsList.length,
@@ -69,9 +66,9 @@ class _MonsterCardsPageState extends State<MonsterCardsPage> {
                       : Center(
                           child: CircularProgressIndicator(),
                         ),
-                ),
-              ),
             ),
+          ),
+        ),
       ),
     );
   }
@@ -102,11 +99,11 @@ class _MonsterCardsPageState extends State<MonsterCardsPage> {
           child: Row(
             children: <Widget>[
               CachedNetworkImage(
-                height: SizeConfig.blockSizeVertical * 20,
+                width: SizeConfig.blockSizeHorizontal * 30,
                 imageUrl: "https://ygoprodeck.com/pics/${card.id}.jpg",
                 placeholder: (context, url) => Container(
-                  margin: EdgeInsets.only(left: 25, right: 25),
-                  child: CircularProgressIndicator(),
+                  width: SizeConfig.blockSizeHorizontal * 30,
+                  child: Center(child: CircularProgressIndicator()),
                 ),
                 errorWidget: (context, url, error) => Icon(Icons.error),
               ),

@@ -1,9 +1,10 @@
 import 'dart:convert';
 
+import 'package:card_app/data/api_service.dart';
 import 'package:card_app/serializers/card.dart';
-import 'package:card_app/utils/constants.dart';
+import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
-import 'package:http/http.dart' as http;
+import 'package:provider/provider.dart';
 
 part 'cards.g.dart';
 
@@ -22,30 +23,30 @@ abstract class CardsBase with Store {
   String filterUrl = "";
 
   @action
-  increaseNumOfCards() {
+  increaseNumOfCards(BuildContext context) {
     numOfCards = numOfCards + 6;
-    getCardsList();
+    getCardsList(context);
   }
 
   @action
-  filterCardList(int filter) {
-  }
+  filterCardList(int filter) {}
 
   @action
-  getCardsList() {
-    fetchCardsList(numOfCards, filterUrl).then((retrievedCards) {
+  getCardsList(BuildContext context) {
+    fetchCardsList(numOfCards, filterUrl, context).then((retrievedCards) {
       cardsList = retrievedCards;
     });
   }
 }
 
-Future<List<YgoCard>> fetchCardsList(int numOfCards, String url) async {
-  print("${createUrl(url, numOfCards)}");
-  final response = await http.get(createUrl(url, numOfCards));
+Future<List<YgoCard>> fetchCardsList(
+    int numOfCards, String url, BuildContext context) async {
+  final res = await Provider.of<ApiService>(context).getAllCards(numOfCards);
+
   List<YgoCard> cards = List<YgoCard>();
 
-  if (response.statusCode == 200) {
-    Iterable cardList = json.decode(response.body);
+  if (res.isSuccessful) {
+    Iterable cardList = json.decode(res.body);
     cards = cardList.map((card) => YgoCard.fromJson(card)).toList();
     for (int i = 0; i < cards.length; i++) {
       print("KARTU ::::: ${cards[i].name}");
@@ -54,8 +55,4 @@ Future<List<YgoCard>> fetchCardsList(int numOfCards, String url) async {
   } else {
     throw Exception("Failed to load cards");
   }
-}
-
-String createUrl(String url, int numOfCards) {
-  return "${Constants.cardList}?num=$numOfCards$url";
 }

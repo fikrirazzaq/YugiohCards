@@ -16,6 +16,8 @@ class CardDetailPage extends StatefulWidget {
 
 class _CardDetailPageState extends State<CardDetailPage> {
 
+  bool isFavourite;
+
   @override
   void initState() {
     Fluttertoast.cancel();
@@ -26,18 +28,18 @@ class _CardDetailPageState extends State<CardDetailPage> {
         timeInSecForIos: 1,
         backgroundColor: cardTypeColor(widget.card.type),
         textColor: Colors.white,
-        fontSize: 16.0
-    );
+        fontSize: 16.0);
+    isFavourite = false;
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
-
     return Scaffold(
       appBar: AppBar(
         title: Text("Card Information"),
+        actions: <Widget>[],
       ),
       body: SingleChildScrollView(
         physics: BouncingScrollPhysics(),

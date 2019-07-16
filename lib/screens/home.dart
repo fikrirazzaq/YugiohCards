@@ -1,8 +1,11 @@
+import 'package:card_app/models/cards.dart';
 import 'package:card_app/screens/all_cards_page.dart';
 import 'package:card_app/screens/monster_cards_page.dart';
+import 'package:card_app/screens/settings_page.dart';
 import 'package:card_app/utils/size_config.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -13,8 +16,12 @@ class _HomeState extends State<Home> {
   int selectedIndex = 0;
 
   final widgetPager = [
-    AllCardsPage(),
-    MonsterCardsPage(),
+    Consumer<Cards>(
+      builder: (context, value, _) => AllCardsPage(),
+    ),
+    Consumer<Cards>(
+      builder: (context, value, _) => MonsterCardsPage(),
+    ),
   ];
 
   @override
@@ -24,6 +31,23 @@ class _HomeState extends State<Home> {
     return WillPopScope(
       onWillPop: _willPopCallback,
       child: Scaffold(
+        appBar: AppBar(
+          title: Text(getTitle(selectedIndex)),
+          actions: <Widget>[
+            IconButton(
+              onPressed: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => SettingsPage(),
+                  ),
+                );
+              },
+              icon: Icon(
+                Icons.settings,
+              ),
+            )
+          ],
+        ),
         bottomNavigationBar: BottomNavigationBar(
           items: [
             BottomNavigationBarItem(
@@ -36,7 +60,6 @@ class _HomeState extends State<Home> {
             ),
           ],
           currentIndex: selectedIndex,
-          fixedColor: Colors.deepPurpleAccent,
           onTap: onItemTapped,
         ),
         body: widgetPager.elementAt(selectedIndex),
@@ -48,6 +71,20 @@ class _HomeState extends State<Home> {
     setState(() {
       selectedIndex = index;
     });
+  }
+
+  String getTitle(int index) {
+    switch (index) {
+      case 0:
+        return "All Cards";
+        break;
+      case 1:
+        return "Monster Cards";
+        break;
+      default:
+        return "All Cards";
+        break;
+    }
   }
 
   Future<bool> _willPopCallback() async {
@@ -66,7 +103,7 @@ class _HomeState extends State<Home> {
             RaisedButton(
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(24)),
-              color: Colors.deepPurple,
+              color: Colors.orange,
               child: Text(
                 "YA",
                 style: TextStyle(
