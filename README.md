@@ -5,6 +5,15 @@ All data are collected from https://db.ygoprodeck.com/api-guide/.
 I apply MobX as state management for this app. At this time, I only implement the list of cards with pagination and detail page. But, I will add some features like sorting, searching, and filter the cards based on availability of multiple parameters in the ygoprodeck.com api. In addition, I use [git-karma] for the commit messages conventions.
 There are still room for improvements, so I'm open for any feedback. Sharing with one another helps us all grow and learn. ✌️
 
+### Screenshots
+<img height="480px" src="screenshots/list.png">
+<img height="480px" src="screenshots/darkmode.png">
+<img height="480px" src="screenshots/monstercard.png">
+<img height="480px" src="screenshots/monstercarddark.png">
+<img height="480px" src="screenshots/spellcard.png">
+<img height="480px" src="screenshots/trapcard.png">
+
+
 ### Api Service
 ```
 GET
@@ -32,6 +41,7 @@ flutter run
 ## TO DO
 - [x] Chopper for Network calls
 - [x] Using Provider
+- [ ] Favorite Cards using Moor
 - [ ] ...
 
 ## Repository Created & Maintained By
