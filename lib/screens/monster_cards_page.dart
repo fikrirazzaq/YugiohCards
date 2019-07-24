@@ -109,7 +109,7 @@ class _MonsterCardsPageState extends State<MonsterCardsPage> {
               ),
               Container(
                 height: SizeConfig.blockSizeVertical * 20,
-                width: SizeConfig.blockSizeHorizontal * 65,
+                width: SizeConfig.blockSizeHorizontal * 60,
                 padding: EdgeInsets.only(left: 8, right: 8, top: 8, bottom: 8),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
