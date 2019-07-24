@@ -22,15 +22,16 @@ flutter run
 ## Libs Dependencies
 * [mobx]
 * [flutter_mobx]
-* [http]
+* [provider]
+* [chopper]
 * [cached_network_image]
 * [fluttertoast]
 * [mobx_codegen]
 * [build_runner]
 
 ## TO DO
-- [ ] Chopper for Network calls
-- [ ] Using Provider
+- [x] Chopper for Network calls
+- [x] Using Provider
 - [ ] ...
 
 ## Repository Created & Maintained By
@@ -45,7 +46,8 @@ flutter run
 
 [mobx]: <https://pub.dev/packages/mobx>
 [flutter_mobx]: <https://pub.dev/packages/flutter_mobx>
-[http]: <https://pub.dev/packages/http>
+[provider]: <https://pub.dev/packages/provider>
+[chopper]: <https://pub.dev/packages/chopper>
 [cached_network_image]: <https://pub.dev/packages/cached_network_image>
 [fluttertoast]: <https://pub.dev/packages/fluttertoast>
 [mobx_codegen]: <https://pub.dev/packages/mobx_codegen>
